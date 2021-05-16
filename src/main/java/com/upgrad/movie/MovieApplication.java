@@ -1,7 +1,8 @@
 package com.upgrad.movie;
 
-import com.upgrad.movie.Dao.CustomerDao;
+import com.upgrad.movie.Dao.MovieDao;
 import com.upgrad.movie.entity.Customer;
+import com.upgrad.movie.entity.Movie;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,29 +14,26 @@ public class MovieApplication {
 
 	public static void main(String[] args) {
 
-		ApplicationContext applicationContext = SpringApplication.run(MovieApplication.class, args);
+	 ApplicationContext applicationContext = SpringApplication.run(MovieApplication.class, args);
 
-		CustomerDao customerDao = applicationContext.getBean(CustomerDao.class);
+		MovieDao movieDao = applicationContext.getBean(MovieDao.class);
 
-		Customer customer = new Customer();
-		customer.setFirstName("Prajwal");
-		customer.setLastName("MJ");
-		customer.setUserName("user");
-		customer.setPassword("8888");
-		customer.setDateOfBirth(LocalDateTime.of(1993,3,2,1,2));
+		Movie movie = new Movie();
+		movie.setMovieName("KGF");
+		movie.setMovieDesc("Gold Fields");
+		movie.setReleaseDate("12/02/2003");
+		movie.setDuration(2);
+		movie.setCoverPhotoUrl("photo");
 
-		Customer saved = customerDao.save(customer);
+      Movie saved = movieDao.save(movie);
 
-		customer.setFirstName("Rakesh");
+		movie.setDuration(3);
 
-		Customer updated = customerDao.update(customer);
+      Movie updated = movieDao.save(movie);
 
-		Customer finding = customerDao.findById(updated.getCustomerId());
+      Movie finding = movieDao.findById(movie.getMovieId()).get();
 
-		System.out.println(finding);
-
-		customerDao.delete(customer);
-
+      movieDao.delete(movie);
 	}
 
 }

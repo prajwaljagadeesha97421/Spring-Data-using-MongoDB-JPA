@@ -16,9 +16,9 @@ public class Movie {
     @Column(name = "MOVIE_ID")
     private int movieId;
 
-    @Column(name = "MOVIE_NAME")
+    @Column(name = "MOVIE_NAME",unique = true,length = 50)
     @NotNull
-    private int movieName;
+    private String movieName;
 
     @Column(name = "MOVIE_DESC" ,length = 500)
     @NotNull
@@ -38,10 +38,5 @@ public class Movie {
 
     @Column(name = "TRAILER_URL")
     private String trailerUrl;
-
-    //FOREIGN KEY
-    @JoinColumn(name = "STATUS_ID")
-    @NotNull
-    private int statusId;
 
 }
